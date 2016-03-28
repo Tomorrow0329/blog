@@ -42,6 +42,13 @@ yargs模块的argv对象用来读取命令行参数
 
         var srgv = require('yargs').alias('n', 'name').argv;
         console.log('hello', argv.n);
+当然，如果用到node中， app.js 里可以这样写：
+
+        if (app.get('env') === 'production') {
+          app.set('views', path.join(__dirname, 'views/dist'));
+        } else {
+          app.set('views', path.join(__dirname, 'views/dev'));
+        }
         
 alias指定n是name的别名
 
@@ -98,3 +105,92 @@ alias指定n是name的别名
           require('./gulp/tasks/' + taskFile)(gulp, sass, ejs, config, plugins, spritesmith, minifycss, rename, imagemin);
         });
 利用gulp构建前端部分，实现前端工程化，简单实例；
+
+### 3.微信
+
+        wxInit = function () {
+                var wxConfig = function () {
+                    $.get(main.publicUrlPrefix + 'wx/js_ticket_package', {url: window.location.href}).done(function (res) {
+                        wx.config({
+                            debug: false,
+                            appId: res.appId,
+                            timestamp: res.timestamp,
+                            nonceStr: res.nonceStr,
+                            signature: res.signature,
+                            jsApiList: [
+                                'checkJsApi',
+                                'chooseImage',
+                                'uploadImage',
+                                'onMenuShareTimeline',
+                                'onMenuShareAppMessage'
+                            ]
+                        });
+                    });
+                };
+                wxConfig();
+                wx.ready(function () {
+                    $uploadBtn.tap(function () {
+                        /*...*/
+                        } else {
+                            $.ajax({
+                                async: false,//同步
+                                type: 'get',
+                                url:  'test-url', //wx
+                                data: {
+                                    'data' : data
+                                },
+                                contentType: false,
+                                dataType: 'json',
+                                timeout: 15000,
+                                success: function (res) {
+                                    if (res.result) {
+                                    
+                                        college_id = res.college_id;
+                                        
+                                        wx.chooseImage({
+                                            count: 1, // 默认9
+                                            sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                                            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                                                var localId = res.localIds[0]; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                                                loadingShow();
+                                                wx.uploadImage({
+                                                    localId: localId,
+                                                    isShowProgressTips: 0,
+                                                    success: function (res) {
+                                                        var serverId = res.serverId;
+                                                        $.ajax({
+                                                            type: 'post',
+                                                            url: 'test-url2',
+                                                            data: {
+                                                                'data' : data
+                                                            },
+                                                            dataType: 'json',
+                                                            timeout: 3000,
+                                                            cache: false,
+                                                            success: function (res) {
+                                                                /*...*/
+                                                            },
+                                                            error: function (res) {
+                                                                // alert(JSON.stringify(data));
+                                                                // alert(JSON.stringify(res));
+                                                                // alert(res.status);
+        
+                                                                /*...*/
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    } else {
+                                        /*...*/
+                                    }
+                                },
+                                error: function (res) {
+                                    /*...*/
+                                }
+                            });
+                        }
+                    });
+                });
+            };
