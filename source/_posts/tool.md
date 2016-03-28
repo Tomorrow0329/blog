@@ -9,6 +9,12 @@ hexo构建个人博客常用命令：
 1.启动 ： hexo server
 2.新建 ：hexo new "name"
 
+hexo中遇到的问题：
+1.WARN  No layout: index.html
+原因：theme修改后并没有进行安装工作，导致themes文件夹中并没有对应的文件，更没有相关的index.html文件。
+Debug:
+1).git pull  下载新的主题
+2).直接用本地已有的主题
 # GULP
 前端工程自动化工具
 1. gulp.src()  引用要处理的源文件
