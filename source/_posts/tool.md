@@ -32,6 +32,16 @@ Debug:
 3.gulp-load-plugins
 4.gulp-webserver
 5.gulp-minify-css
-6.autoprefixer
-7.yargs    用于获取启动参数，针对不同参数，执行不同的代码过程
-8.nodemon  用于获取启动参数，针对不同参数，切换任务执行过程时需要
+
+# NPM Package
+1.yargs    用于获取启动参数，处理命令行参数，针对不同参数，执行不同的代码过程
+yargs模块的argv对象用来读取命令行参数
+
+        var srgv = require('yargs').alias('n', 'name').argv;
+        console.log('hello', argv.n);
+        
+alias指定n是name的别名
+
+2.autoprefixer 为CSS自动添加前缀，可以通过他自由的属性来自定义需要兼容的浏览器版本、是否去掉过时的前缀等。
+3.nodemon  用于获取启动参数，针对不同参数，切换任务执行过程时需要(同supervisor)
+4.imagemin-pngquant  png图片压缩（gulp也有类似的工具 gulp-imagemin）
