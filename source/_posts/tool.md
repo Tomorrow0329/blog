@@ -1,7 +1,7 @@
 title: Tool Description
 date: 2016-03-25 17:13:23
 categories:
-tags: [project]
+tags: [project, gulp, wx]
 ---
 
 # HEXO
@@ -35,6 +35,36 @@ Debug:
 6.gulp-ejs
 7.gulp.spritesmith
 8.gulp-rename
+9.gulp-jslint,,demo:
+
+        gulp.task('jslint', function () {
+            // set your js name
+            return gulp.src(config.jsBasePath + fileName + '.js')
+              .pipe(plugins.jslint({
+                // detail: http://jslint.com/help.html
+                bitwise: false,
+                browser: true,
+                couch: false,
+                // Be sure to turn this option off before going into production.
+                devel: false,
+                // es6: false,
+                eval: false,
+                for: true,
+                fudge: true,
+                maxerr: 256,
+                maxlen: 160,
+                node: false,
+                this: true,
+                white: false,
+                // or you can declare them in the js as /*global aaa,bbb*/
+                global: [
+                  'window',
+                  'jQuery',
+                  '$',
+                  'wx'
+                ]
+              }));
+          });
 
 # NPM Package
 1.yargs    用于获取启动参数，处理命令行参数，针对不同参数，执行不同的代码过程
