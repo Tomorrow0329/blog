@@ -226,31 +226,3 @@ alias指定n是name的别名
             };
 ### 4.多语言(angular-translate)
 [angular-translate Doc](http://angular-translate.github.io/docs/zh-cn/#/guide)
-安装、引入、基本用法
-
-        $ bower install angular-translate
-        
-        //将它嵌入在自己的HTML文档中
-        <script src="path/to/angular-translate.js"></script>
-        
-        //将angular-translate模块作为依赖注入到应用程序中
-        var app = angular.module('myApp', ['pascalprecht.translate']);
-        
-         //应用
-         app.config(['$translateProvider', function ($translateProvider) {
-           $translateProvider.translations('en', {
-             'TITLE': 'Hello',
-             'FOO': 'This is a paragraph'
-           });
-          
-           $translateProvider.translations('de', {
-             'TITLE': 'Hallo',
-             'FOO': 'Dies ist ein Absatz'
-           });
-          
-           $translateProvider.preferredLanguage('en');
-         }]);
-         
-          //页面
-          <h1>{{ 'TITLE' | translate }}</h1>
-          <p>{{ 'FOO' | translate }}</p>
